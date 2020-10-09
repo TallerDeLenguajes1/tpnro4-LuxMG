@@ -1,25 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cadeteria
 {
 	class Helpers
 	{
-		static public Random random = new Random(Environment.TickCount);
-		public enum Nombres { Pablo, Maria, Pedro, Sara, Juan, Julieta };
-		public enum Apellidos { Perez, Martinez, Sanchez, Fernandez, Gonzalez, Diaz };
-		public enum Direcciones { Cordoba, Junin, Maipu, Muñecas, Santiago, Rondeau, Larrea };
-		
-		static public Pedido PedidoAleatorio(int numeroP, int idC)
+		public static Random random = new Random(Environment.TickCount);
+		public static string[] Nombres = { "Pablo", "Maria", "Pedro", "Sara", "Juan", "Julieta" };
+		public static string[] Apellidos = { "Perez", "Martinez", "Sanchez", "Fernandez", "Gonzalez", "Diaz" };
+		public static string[] Direcciones = { "Cordoba", "Junin", "Maipu", "Muñecas", "Santiago", "Rondeau", "Larrea" };
+
+		public static Pedido PedidoAleatorio(int _numeroP, Cliente _cliente)
 		{
 			string observacion = "";
-			
+
 			int aux = random.Next() % 2;
 			bool estado;
-			if(aux == 1)
+			if (aux == 1)
 			{
 				estado = true;
 			}
@@ -28,41 +24,32 @@ namespace Cadeteria
 				estado = false;
 			}
 
-			int t = random.Next(Enum.GetNames(typeof(Nombres)).Length);
-			Type tipoEnum = typeof(Nombres);
-			string nombre = Enum.GetNames(tipoEnum)[t];
-
-			t = random.Next(Enum.GetNames(typeof(Apellidos)).Length);
-			tipoEnum = typeof(Apellidos);
-			nombre += " " + Enum.GetNames(tipoEnum)[t];
-
-			t = random.Next(Enum.GetNames(typeof(Direcciones)).Length);
-			tipoEnum = typeof(Direcciones);
-			string direccion = Enum.GetNames(tipoEnum)[t];
+			string nombre = Nombres[random.Next(Nombres.Length)];
+			nombre += " " + Apellidos[random.Next(Apellidos.Length)];
+			string direccion = Direcciones[random.Next(Direcciones.Length)];
 
 			aux = 15;
-			while(aux < 100000000)
+			while (aux < 100000000)
 			{
 				aux = aux * 10 + random.Next() % 10;
 			}
 			string telefono = aux.ToString();
 
-			return new Pedido(numeroP, observacion, estado, idC, nombre, direccion, telefono);
+
+
+			return new Pedido(_numeroP, observacion, estado, );
 		}
 
-		static public Cadete CadeteAleatorio(int id)
+		public static Cadete CadeteAleatorio(int id)
 		{
 			int t = random.Next(Enum.GetNames(typeof(Nombres)).Length);
-			Type tipoEnum = typeof(Nombres);
-			string nombre = Enum.GetNames(tipoEnum)[t];
+			string nombre = Enum.GetNames(typeof(Nombres))[t];
 
 			t = random.Next(Enum.GetNames(typeof(Apellidos)).Length);
-			tipoEnum = typeof(Apellidos);
-			nombre += " " + Enum.GetNames(tipoEnum)[t];
+			nombre += " " + Enum.GetNames(typeof(Apellidos))[t];
 
 			t = random.Next(Enum.GetNames(typeof(Direcciones)).Length);
-			tipoEnum = typeof(Direcciones);
-			string direccion = Enum.GetNames(tipoEnum)[t];
+			string direccion = Enum.GetNames(typeof(Direcciones))[t];
 
 			int aux = 15;
 			while (aux < 100000000)
