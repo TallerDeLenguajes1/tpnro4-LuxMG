@@ -15,8 +15,9 @@ namespace Cadeteria
 		public int CantPedidos { get => cantPedidos; set => cantPedidos = value; }
 		public int CantEntregados { get => cantEntregados; set => cantEntregados = value; }
 		public Vehiculos Vehiculo { get => vehiculo; set => vehiculo = value; }
+        internal List<Pedido> PedidosP { get => Pedidos; set => Pedidos = value; }
 
-		public Cadete() : base()
+        public Cadete() : base()
 		{
 			Vehiculo = Vehiculos.Default;
 		}
@@ -64,9 +65,26 @@ namespace Cadeteria
 
 		public void MostrarDatos()
 		{
+			Console.WriteLine("Cadete #" + Id);
 			Console.WriteLine("Nombre: " + Nombre);
 			Console.WriteLine("Cantidad de pedidos recibidos: " + CantPedidos);
 			Console.WriteLine("Cantidad de pedidos entregados: " + CantEntregados);
+			Console.Write("Vehiculo que posee: ");
+			switch (Vehiculo)
+            {
+				case Vehiculos.Bicicleta:
+					Console.WriteLine("Bicicleta");
+					break;
+				case Vehiculos.Moto:
+					Console.WriteLine("Moto");
+					break;
+				case Vehiculos.Auto:
+					Console.WriteLine("Auto");
+					break;
+				default:
+					Console.WriteLine("No posee");
+					break;
+			}
 			Console.WriteLine("Jornal a recibir: " + Jornal());
 		}
 	}

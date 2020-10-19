@@ -14,5 +14,14 @@ namespace Cadeteria
 
 		public Cliente() : base() { }
 		public Cliente(int _id, string _nombre, string _direccion, string _telefono) : base(_id, _nombre, _direccion, _telefono) { }
+
+		public void MostrarDatos()
+		{
+			Console.WriteLine("Cliente #" + Id);
+			Console.WriteLine("Nombre: " + Nombre);
+			Console.WriteLine("Direccion: " + Direccion);
+			Console.WriteLine("Telefono: " + Telefono);
+			Console.WriteLine("Cantidad de pedidos que realizo: " + CantPedidos);
+		}
 	}
 }
